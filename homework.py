@@ -153,3 +153,86 @@ student1.finished_courses += ["Введение в программирован�
 
 student2.courses_in_progress += ["Python", "C++"]
 student2.finished_courses += ["Git"]
+
+
+# ПРОВЕРКА task1
+
+print("=== Проверка 1: наследование (Задание 1) ===")
+print("lecturer1 является Mentor:", isinstance(lecturer1, Mentor))   # True
+print("reviewer1 является Mentor:", isinstance(reviewer1, Mentor))   # True
+print("lecturer1.courses_attached:", lecturer1.courses_attached)    # ['Python', 'Java']
+print("reviewer1.courses_attached:", reviewer1.courses_attached)    # ['Python', 'C++']
+
+
+
+# ПРОВЕРКА task2
+
+print("\n=== Проверка 2: оценки (Задание 2) ===")
+
+
+print("reviewer1.rate_hw(student1, 'Python', 9):",
+      reviewer1.rate_hw(student1, "Python", 9))       # None (ок)
+print("reviewer1.rate_hw(student1, 'Python', 8):",
+      reviewer1.rate_hw(student1, "Python", 8))       # None (ок)
+print("reviewer2.rate_hw(student1, 'Java', 10):",
+      reviewer2.rate_hw(student1, "Java", 10))        # None (ок)
+print("reviewer1.rate_hw(student2, 'Python', 7):",
+      reviewer1.rate_hw(student2, "Python", 7))       # None (ок)
+print("reviewer2.rate_hw(student2, 'Java', 6):",
+      reviewer2.rate_hw(student2, "Java", 6))         # Ошибка: у student2 нет Java
+print("reviewer2.rate_hw(student2, 'C++', 8):",
+      reviewer2.rate_hw(student2, "C++", 8))          # Ошибка: у reviewer2 нет C++
+
+
+print("student1.rate_lecture(lecturer1, 'Python', 7):",
+      student1.rate_lecture(lecturer1, "Python", 7))  # None (ок)
+print("student1.rate_lecture(lecturer1, 'Java', 8):",
+      student1.rate_lecture(lecturer1, "Java", 8))    # None (ок)
+print("student2.rate_lecture(lecturer1, 'Python', 9):",
+      student2.rate_lecture(lecturer1, "Python", 9))  # None (ок)
+print("student2.rate_lecture(lecturer2, 'C++', 10):",
+      student2.rate_lecture(lecturer2, "C++", 10))    # None (ок)
+print("student2.rate_lecture(reviewer1, 'Python', 6):",
+      student2.rate_lecture(reviewer1, "Python", 6))  # Ошибка: reviewer1 — не Lecturer
+
+print("\nОценки лектора 1:", lecturer1.grades)   # {'Python': [7, 9], 'Java': [8]}
+print("Оценки студента 1:", student1.grades)     # {'Python': [9, 8], 'Java': [10]}
+
+
+
+# ПРОВЕРКА task3
+
+
+print("\n=== Проверка 3: str и сравнение (Задание 3) ===")
+
+# __str__ у Reviewer
+print(reviewer1)
+print("---")
+
+# __str__ у Lecturer
+print(lecturer1)
+print("---")
+
+# __str__ у Student
+print(student1)
+print("---")
+
+# Сравнение лекторов по средней оценке за лекции (__gt__ через __lt__)
+print("lecturer1 > lecturer2:", lecturer1 > lecturer2)
+
+# Сравнение студентов по средней оценке за ДЗ (__gt__ через __lt__)
+print("student1 > student2:", student1 > student2)
+
+
+# ПРОВЕРКА task4
+
+
+print("\n=== Проверка 4: средние по курсу (Задание 4) ===")
+
+# Функция из Задания 4 № 1
+print("Средняя за ДЗ по Python:",
+      average_hw_by_course([student1, student2], "Python"))
+
+# Функция из Задания 4 № 2
+print("Средняя за лекции по Python:",
+      average_lecture_by_course([lecturer1, lecturer2], "Python"))
