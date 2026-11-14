@@ -108,3 +108,48 @@ class Student:
         return self._average_hw() <= other._average_hw()
 
 
+# task4: средняя за ДЗ по курсу
+def average_hw_by_course(students, course):
+    total = []
+    for student in students:
+        if course in student.grades:
+            total.extend(student.grades[course])
+    if not total:
+        return 0
+    return round(sum(total) / len(total), 1)
+
+
+def average_lecture_by_course(lecturers, course):
+    total = []
+    for lecturer in lecturers:
+        if course in lecturer.grades:
+            total.extend(lecturer.grades[course])
+    if not total:
+        return 0
+    return round(sum(total) / len(total), 1)
+
+
+# task4. СОЗДАНИЕ ЭКЗЕМПЛЯРОВ
+
+
+lecturer1 = Lecturer("Иван", "Иванов")
+lecturer2 = Lecturer("Сергей", "Смирнов")
+
+reviewer1 = Reviewer("Пётр", "Петров")
+reviewer2 = Reviewer("Анна", "Кузнецова")
+
+student1 = Student("Алёхина", "Ольга", "Ж")
+student2 = Student("Дмитрий", "Соколов", "М")
+
+# курсы
+lecturer1.courses_attached += ["Python", "Java"]
+lecturer2.courses_attached += ["Python", "C++"]
+
+reviewer1.courses_attached += ["Python", "C++"]
+reviewer2.courses_attached += ["Python", "Java"]
+
+student1.courses_in_progress += ["Python", "Java"]
+student1.finished_courses += ["Введение в программирование"]
+
+student2.courses_in_progress += ["Python", "C++"]
+student2.finished_courses += ["Git"]
