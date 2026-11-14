@@ -80,4 +80,31 @@ class Student:
         else:
             return "Ошибка"
 
-   
+    # средние оценки за ДЗ
+    def _average_hw(self):
+        all_grades = [g for grades in self.grades.values() for g in grades]
+        if not all_grades:
+            return 0
+        return round(sum(all_grades) / len(all_grades), 1)
+
+    # str
+    def __str__(self):
+        return (
+            f"Имя: {self.name}\n"
+            f"Фамилия: {self.surname}\n"
+            f"Средняя оценка за домашние задания: {self._average_hw()}\n"
+            f"Курсы в процессе изучения: {', '.join(self.courses_in_progress)}\n"
+            f"Завершенные курсы: {', '.join(self.finished_courses)}"
+        )
+
+    # студенты по средней оценке за ДЗ
+    def __eq__(self, other):
+        return self._average_hw() == other._average_hw()
+
+    def __lt__(self, other):
+        return self._average_hw() < other._average_hw()
+
+    def __le__(self, other):
+        return self._average_hw() <= other._average_hw()
+
+
